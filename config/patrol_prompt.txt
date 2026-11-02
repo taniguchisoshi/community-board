@@ -27,7 +27,7 @@ Slack通知先：チャンネル「コミュニティ-返信通知」（channel_
 - 内蔵ブラウザでボードのURLを開き、javascript_tool で `fetch(window.BOARD_API+'?api=board&token=TOKEN&limit=1000')` を実行して items・config を全部読む。同じ画面で「今の日本時間」も取る。
 - config.sources の各 url と rooms を巡回先とする。部屋が増えていたら（MOSHの部屋一覧に config に無い部屋がある）それも巡回し、setConfig（key "sources"）で rooms に足す。
 - MOSH のページの読み方（心電図循環器・MAT 共通）：部屋のURLを開いて6秒待つ。ログイン画面・「Application Error」・「Refresh Token has expired」ならそのサイトはログイン切れ。コメントは Stream Chat の部品。`.str-chat__reverse-infinite-scroll` の scrollTop=0 を数回やって古いコメントも読み込む。トップレベルは `ul.str-chat__ul` の子の `li`、日付区切り `.str-chat__date-separator`、投稿者 `.str-chat__message-simple-name`、本文 `.str-chat__message-text`、時刻 `time`。谷口の投稿は `.str-chat__message--me`（名前は空）。スレッドは `.str-chat__message-replies-count-button` で開き `.str-chat__thread` を読む。全スレッドを開く。「このメッセージは削除されました」は無視。次の部屋の前にスレッドを閉じる（`.str-chat__close-thread-button`）。
-- Yoor（https://yoor.jp/room/taniguchisoshi）の読み方：ページを開いて6秒待ち、get_page_text と read_page で会員の投稿・コメントを読む。ログイン画面なら「Yoorのログインが切れています」。画面の作りが分からなければ、読めた範囲だけ扱い、巡回記録の status に「Yoor：画面の作りを確認中（〇〇までは読めた）」と書く。
+- Yoor（谷口総志【直伝】自然体コミュニティ https://yoor.jp/room/taniguchisoshi ）の読み方：読み込みが遅いので、ページを開いて10秒待ち、document.body が無ければさらに10秒待つ。ログイン画面（/signin）に飛べば「Yoorのログインが切れています」。config.sources の Yoor の rooms（トークルーム）を順に開き、投稿の一覧を document.body.innerText で読む（1投稿＝「部屋名／日付 時刻／タイトル／本文／投稿者名／@ID／いいね数「N件」／コメント数「N件」」の並び。「続きを見る」で本文が省略されているものは、タイトルを押して全文を読む）。コメント数が1以上の投稿は開いてコメントも読む。「ダイレクトトーク一覧」（ホーム左の各トーク /room/taniguchisoshi/<id>）も開き、相手からの最後のメッセージに谷口が返していないものを拾う（DMの返信案はコメントより丁寧に、1~4文）。「自然体つぶやきX」は会員の日記的なつぶやきの部屋なので、谷口宛ての問いかけ・質問・相談があるものだけ拾う（感想・日記だけは載せない）。画面の作りが変わって読めなければ、読めた範囲だけ扱い、巡回記録の status に「Yoor：〇〇までは読めた（理由）」と書く。
 - ※MOSHは2027年1月末に「会員サイト」へ移行予定。ページ構成が変わったら、そのサイトは飛ばし、status に「MOSHの会員サイト移行でページ構成が変わった可能性。タスクの修正が必要」と書く。
 
 ## STEP 1｜「投稿待ち」を投稿する（先にやる）
