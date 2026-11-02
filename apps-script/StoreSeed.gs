@@ -12,7 +12,7 @@ const STORE_SEED = {
   themeColor: "#1f6f5c",
   logoUrl: "",
   pageUrl: "https://taniguchisoshi.github.io/community-board/",
-  slackChannelId: "",
+  slackChannelId: "C0CDURUNRDK",
   slackChannelName: "コミュニティ-返信通知",
   patrolStaleMin: 420,
   patrolTimes: "9・15・21時台",
