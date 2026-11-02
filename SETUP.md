@@ -1,3 +1,5 @@
+デプロイURL：https://script.google.com/macros/s/AKfycbwN4CdYSwI4WWMZ_XgGQSP4n4Vy9OhTMQinFHHVZzPJl8G_D2FgAWc-EjUG5l51fsrO/exec
+
 # 谷口コミュニティ 返信ボードのつくり（記録）
 
 作りは [jinjacafe-board](https://github.com/taniguchisoshi/jinjacafe-board) と同じ。谷口の作業はOAuth承認とデプロイの承認だけで、残りはClaudeが内蔵ブラウザで行った（2026-11-02）。
